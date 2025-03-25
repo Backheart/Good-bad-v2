@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good bad</title>
+</head>
+<style>
+    body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #698378;
+    font-family: 'Indie Flower', cursive;
+    
+}
+
+.contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+     gap: 20px;
+}
+h1{
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.guesses{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    font-size: 2rem;
+    background-color: #f7f7f7;border-radius: 10px;  
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.my-guess{
+    margin: 20px;
+    padding: 20px 30px;
+    font-size: 1.5rem;
+    background-color: #fe7206;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.guess{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.guess1,.guess2{
+    margin-left: 10px
+}
+</style>
+<body>
+<div class="contain">
+    <h1 class="heading">Refresh</h1>
+
+    <div class="guesses">
+        <div class="guess">
+        <p class="player1">Player 1</p>
+        <p class="guess1" ></p>
+      </div>
+   
+      <div class="guess">
+        <p class="player1">Player 2</p>
+        <p class="guess2" ></p>
+      </div>
+
+    </div>
+
+    <button class="my-guess">My Guess</button>
+</div>
+    
+
+<script>
+
+const guess = ['WORSE','BAD','GOOD'];
+
+const myGuess = document.querySelector('.my-guess');
+const player1 = document.querySelector('.player1');
+const player2 = document.querySelector('.player2');
+const guess1 = document.querySelector('.guess1');
+const guess2 = document.querySelector('.guess2');
+const headingElement = document.querySelector('.heading');
+const labelElement = document.querySelector('.label');
+
+myGuess.addEventListener('click', playGame);
+
+
+function getRandomGuess() {
+    return Math.floor(Math.random() * guess.length);
+}
+
+function playGame(){
+
+    const randomGuess1 = getRandomGuess();
+const randomGuess2 = getRandomGuess();
+ 
+    guess1.innerHTML = guess[randomGuess1];
+    guess2.innerHTML = guess[randomGuess2];
+
+    if(randomGuess1 > randomGuess2){
+        headingElement.innerHTML = 'Player 1 Wins!🚩';
+    }else if(randomGuess1 < randomGuess2){
+        headingElement.innerHTML = '🚩Player 2 Wins!';
+    }else{
+        headingElement.innerHTML = 'Draw!';
+        
+    }
+}
+
+playGame()
+
+</script>
+    
+</body>
+</html>
